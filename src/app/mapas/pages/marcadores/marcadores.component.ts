@@ -72,6 +72,11 @@ export class MarcadoresComponent implements AfterViewInit {
     });
 
     this.guardarMarcadores();
+
+    nuevoMarcador.on('dragend', () => {
+      this.guardarMarcadores();
+    });
+
   }
 
   guardarMarcadores(): void {
@@ -114,6 +119,12 @@ export class MarcadoresComponent implements AfterViewInit {
 
     });
 
+  }
+
+  borrarMarcador(i: number): void {
+    this.marcadores[i].marker?.remove();
+    this.marcadores.splice(i, 1);
+    this.guardarMarcadores();
   }
 
 }
